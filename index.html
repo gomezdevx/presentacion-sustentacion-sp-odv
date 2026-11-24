@@ -1097,17 +1097,20 @@
       justify-content: flex-start;
     }
     .cover-devices-area .cover-web-card {
-      width: 84%;
+      width: 88%;
       max-width: none;
+      max-height: 100%;
       transform: none;
       border-radius: 14px;
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
     }
     .cover-devices-area .cover-phone-front {
-      width: 32%;
-      max-width: 248px;
+      width: 28%;
+      max-width: 215px;
       right: 4px;
-      bottom: 4px;
+      bottom: 8px;
     }
     .cover-stage-foot {
       display: grid;
@@ -1689,7 +1692,7 @@
       border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
     @media print { html,body,.deck { height:auto; overflow:visible; background:white; } .slide { position:relative; opacity:1; transform:none; width:297mm; height:210mm; padding:12mm; break-after:page; print-color-adjust:exact; -webkit-print-color-adjust:exact; overflow:hidden; } .slide:last-child { break-after:auto; } .anim { animation:none; opacity:1; transform:none; } .corner-pager,.grid-overlay,.notes-drawer,.lightbox { display:none !important; } @page { size:A4 landscape; margin:0; } }
-    .cover-web-video { width:100%; display:block; object-fit:cover; background:#fff; }
+    .cover-web-video { width:100%; height:auto; aspect-ratio:16/9; display:block; object-fit:contain; background:#fff; }
     .browser-bar { justify-content:space-between; }
     .browser-bar-left { display:flex; align-items:center; gap:6px; min-width:0; }
     .browser-bar-actions { display:flex; align-items:center; gap:6px; flex-shrink:0; }
@@ -2160,17 +2163,14 @@
           <div class="app-steps-card">
             <div class="gallery-heading">
               <span class="tag">Capturas del producto</span>
-              <button type="button" class="btn-primary" id="btnAutoPhone" onclick="toggleAutoPhone()">
-                <svg id="playIco" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"/></svg>
-                <span id="playTxt">Auto-recorrer</span>
-              </button>
+              <span class="tag tag-blue">Recorrido automático</span>
             </div>
             <div class="step-list" id="appStepList">
-              <button type="button" class="step-btn active" aria-pressed="true" onclick="showAppScreen(0)"><span class="step-num">1</span><span><strong>Presentación</strong><span class="step-desc">Identidad visual y comprobación de sesión.</span></span></button>
-              <button type="button" class="step-btn" aria-pressed="false" onclick="showAppScreen(1)"><span class="step-num">2</span><span><strong>Acceso por correo</strong><span class="step-desc">Segundo factor cuando la cuenta lo requiere.</span></span></button>
-              <button type="button" class="step-btn" aria-pressed="false" onclick="showAppScreen(2)"><span class="step-num">3</span><span><strong>Inicio del asesor</strong><span class="step-desc">Accesos a nueva solicitud y correcciones.</span></span></button>
-              <button type="button" class="step-btn" aria-pressed="false" onclick="showAppScreen(3)"><span class="step-num">4</span><span><strong>Ubicación</strong><span class="step-desc">Municipio, sector y punto de instalación.</span></span></button>
-              <button type="button" class="step-btn" aria-pressed="false" onclick="showAppScreen(4)"><span class="step-num">5</span><span><strong>Revisión y envío</strong><span class="step-desc">Resumen de los datos antes de radicar.</span></span></button>
+              <button type="button" class="step-btn active" aria-pressed="true" onclick="showAppScreen(0, true)"><span class="step-num">1</span><span><strong>Presentación</strong><span class="step-desc">Identidad visual y comprobación de sesión.</span></span></button>
+              <button type="button" class="step-btn" aria-pressed="false" onclick="showAppScreen(1, true)"><span class="step-num">2</span><span><strong>Acceso por correo</strong><span class="step-desc">Segundo factor cuando la cuenta lo requiere.</span></span></button>
+              <button type="button" class="step-btn" aria-pressed="false" onclick="showAppScreen(2, true)"><span class="step-num">3</span><span><strong>Inicio del asesor</strong><span class="step-desc">Accesos a nueva solicitud y correcciones.</span></span></button>
+              <button type="button" class="step-btn" aria-pressed="false" onclick="showAppScreen(3, true)"><span class="step-num">4</span><span><strong>Ubicación</strong><span class="step-desc">Municipio, sector y punto de instalación.</span></span></button>
+              <button type="button" class="step-btn" aria-pressed="false" onclick="showAppScreen(4, true)"><span class="step-num">5</span><span><strong>Revisión y envío</strong><span class="step-desc">Resumen de los datos antes de radicar.</span></span></button>
             </div>
             <svg class="wizard-svg" viewBox="0 0 560 58" aria-hidden="true">
               <line x1="125" y1="29" x2="155" y2="29" stroke="#94a3b8" stroke-width="2.5" class="svg-flow-line"/>
@@ -2794,18 +2794,21 @@
       document.getElementById('notesTitle').textContent = `Guion ${current + 1} · ${s.dataset.duration} s · ${s.dataset.title}`;
       document.getElementById('notesBody').textContent = s.dataset.notes || '';
       document.querySelectorAll('.g-card').forEach((c, i) => c.classList.toggle('current', i === current));
+      if (current === 4) startAutoPhone();
+      else stopAutoPhone();
     }
 
     function goTo(idx) {
       if (idx < 0) idx = 0;
       if (idx >= slides.length) idx = slides.length - 1;
       if (current !== idx) {
-        if (autoPhoneTimer) toggleAutoPhone();
+        stopAutoPhone();
         clearInterval(flowTimer); flowTimer = null;
         const focused = document.activeElement;
         if (slides[current].contains(focused)) document.getElementById('deck').focus({preventScroll:true});
       }
       current = idx;
+      if (current === 4) showAppScreen(0);
       updateSlideUI();
     }
     function next() { goTo(current + 1); }
@@ -2931,7 +2934,7 @@
     let appIdx = 0;
     let autoPhoneTimer = null;
 
-    function showAppScreen(idx) {
+    function showAppScreen(idx, manual = false) {
       appIdx = idx;
       const s = appScreens[idx];
       const img = document.getElementById('phoneImg');
@@ -2955,21 +2958,23 @@
       document.querySelectorAll('.wizard-svg .wiz-step').forEach((w, i) => {
         w.classList.toggle('is-current', i === s.wiz);
       });
+      if (manual && current === 4) startAutoPhone();
     }
 
-    function toggleAutoPhone() {
-      const ico = document.getElementById('playIco');
-      const txt = document.getElementById('playTxt');
+    function stopAutoPhone() {
       if (autoPhoneTimer) {
         clearInterval(autoPhoneTimer);
         autoPhoneTimer = null;
-        ico.innerHTML = '<polygon points="6 4 20 12 6 20 6 4"/>';
-        txt.textContent = 'Auto-recorrer';
-      } else {
-        ico.innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
-        txt.textContent = 'Pausar recorrido';
-        autoPhoneTimer = setInterval(() => showAppScreen((appIdx + 1) % appScreens.length), 2400);
       }
+    }
+
+    function startAutoPhone() {
+      stopAutoPhone();
+      if (prefersReducedMotion) return;
+      autoPhoneTimer = setInterval(() => {
+        if (current !== 4) { stopAutoPhone(); return; }
+        showAppScreen((appIdx + 1) % appScreens.length);
+      }, 3000);
     }
 
     // Slide 7: Live Flow Animation + SVG Station Sync
