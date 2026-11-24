@@ -1170,17 +1170,18 @@
     .context-panels h3, .quality-panels h3 { margin-bottom: 0; font-size: clamp(20px, 1.55cqi, 26px); }
     .panel-svg-wrap {
       flex: 1;
-      min-height: 105px;
+      min-height: 112px;
       border-radius: 14px;
       overflow: hidden;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      padding: 8px 14px;
+      background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+      border: 1px solid #334155;
+      padding: 10px 14px;
       display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
     }
-    .panel-svg-wrap svg { width: 100%; height: 100%; max-height: 210px; display: block; flex: none; pointer-events: none; }
+    .panel-svg-wrap svg { width: 100%; height: 100%; max-height: 215px; display: block; flex: none; pointer-events: none; }
 
     .bento-list {
       display: flex;
@@ -1583,16 +1584,17 @@
     .rec-col h3 { font-size: clamp(19px, 1.45cqi, 24px); margin: 6px 0 0; }
     .rec-svg-box {
       flex: 1;
-      min-height: 86px;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 8px 10px;
+      min-height: 108px;
+      background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+      border: 1px solid #334155;
+      border-radius: 14px;
+      padding: 10px 12px;
       display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
     }
-    .rec-svg-box svg { width: 100%; height: 100%; max-height: 165px; display: block; flex: none; pointer-events: none; }
+    .rec-svg-box svg { width: 100%; height: 100%; max-height: 175px; display: block; flex: none; pointer-events: none; }
     .rec-items { display: flex; flex-direction: column; gap: 8px; }
     .rec-item {
       background: #f8fafc;
@@ -1705,6 +1707,8 @@
     .bar-chip.is-video { background:var(--brand-soft); border-color:rgba(196,11,43,.35); color:var(--brand); }
     .browser-media { flex:1; min-height:0; display:flex; align-items:center; justify-content:center; background:#f8fafc; overflow:hidden; position:relative; }
     .browser-media > [hidden] { display:none !important; }
+    .browser-progress { position:absolute; left:0; right:0; top:0; height:3px; background:rgba(15,23,42,0.08); z-index:4; pointer-events:none; }
+    .browser-progress-fill { height:100%; width:0%; background:linear-gradient(90deg, var(--brand) 0%, #ff4d6d 100%); transition:width 0.25s linear; }
     .browser-video { width:100%; height:100%; object-fit:contain; background:#f8fafc; display:block; }
     .tab-video-dot { display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--brand); margin-right:6px; vertical-align:middle; }
     .tab-btn.active .tab-video-dot { background:#fff; }
@@ -2619,7 +2623,8 @@
                 </div>
               </div>
               <div class="browser-media">
-                <video id="webVideo" class="browser-video" width="1366" height="768" loading="lazy" preload="metadata" src="./assets/videos/clip_solicitud_publica.webm" poster="./assets/web_publica_mapa.png" autoplay loop muted playsinline controls aria-label="Video de recorrido del portal web"></video>
+                <div class="browser-progress" aria-hidden="true"><div class="browser-progress-fill" id="webProgressFill"></div></div>
+                <video id="webVideo" class="browser-video" width="1366" height="768" loading="lazy" preload="metadata" src="./assets/videos/clip_solicitud_publica.webm" poster="./assets/web_publica_mapa.png" autoplay muted playsinline controls aria-label="Video de recorrido del portal web"></video>
                 <button type="button" class="browser-img-wrap" id="webImgWrap" hidden onclick="openLightbox(document.getElementById('webImg').src, document.getElementById('webImg').alt)" aria-label="Ampliar captura del portal web">
                   <img id="webImg" src="./assets/web_publica_mapa.png" alt="Ubicación inteligente con Google Maps">
                 </button>
@@ -2685,31 +2690,39 @@
               <span class="tag tag-green">Verificado sin riesgo</span>
             </div>
             <div class="panel-svg-wrap">
-              <svg viewBox="0 0 460 116" aria-hidden="true">
-                <line x1="142" y1="58" x2="164" y2="58" stroke="#1f6f4a" stroke-width="2.5" class="svg-flow-line"/>
-                <line x1="296" y1="58" x2="318" y2="58" stroke="#1f6f4a" stroke-width="2.5" class="svg-flow-line"/>
-                <circle r="4" fill="#22c55e"><animateMotion dur="2.2s" repeatCount="indefinite" path="M142,58 L318,58"/></circle>
+              <svg viewBox="0 0 460 124" aria-hidden="true">
+                <line x1="142" y1="62" x2="164" y2="62" stroke="#4ade80" stroke-width="2.6" class="svg-flow-fast"/>
+                <line x1="296" y1="62" x2="318" y2="62" stroke="#4ade80" stroke-width="2.6" class="svg-flow-fast"/>
+                <circle r="3.8" fill="#4ade80"><animateMotion dur="1.2s" repeatCount="indefinite" path="M142,62 L164,62"/></circle>
+                <circle r="3.8" fill="#4ade80"><animateMotion dur="1.2s" begin="0.4s" repeatCount="indefinite" path="M296,62 L318,62"/></circle>
 
-                <rect x="8" y="16" width="134" height="84" rx="12" fill="#fff1f2" stroke="#c40b2b" stroke-width="2"/>
-                <circle cx="124" cy="32" r="9" fill="#c40b2b" class="svg-soft-pop"/>
-                <path d="M120,32 L123,35 L129,29" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-                <text x="68" y="48" text-anchor="middle" font-size="13" font-weight="800" fill="#8f0a21">SEGURIDAD</text>
-                <text x="68" y="68" text-anchor="middle" font-size="11" font-weight="700" fill="#334155">Acceso por rol</text>
-                <text x="68" y="84" text-anchor="middle" font-size="10" font-weight="600" fill="#64748b">y cierre de sesión</text>
+                <!-- Card 1: Seguridad -->
+                <rect x="8" y="14" width="134" height="96" rx="12" fill="rgba(196,11,43,0.18)" stroke="#ff758f" stroke-width="2"/>
+                <circle cx="124" cy="30" r="9" fill="#22c55e" class="svg-soft-pop"/>
+                <path d="M120,30 L123,33 L129,27" fill="none" stroke="#0f172a" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M32,26 L42,30 L42,39 C42,46 37,50 32,53 C27,50 22,46 22,39 L22,30 Z" fill="#c40b2b" stroke="#fda4af" stroke-width="1.5"/>
+                <text x="78" y="47" text-anchor="middle" font-size="12.5" font-weight="800" fill="#ffffff">SEGURIDAD</text>
+                <text x="75" y="74" text-anchor="middle" font-size="11" font-weight="700" fill="#fda4af">Acceso por rol</text>
+                <text x="75" y="92" text-anchor="middle" font-size="10" font-weight="600" fill="#cbd5e1">y cierre de sesión</text>
 
-                <rect x="164" y="16" width="132" height="84" rx="12" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2"/>
-                <circle cx="278" cy="32" r="9" fill="#1d4ed8" class="svg-soft-pop"/>
-                <path d="M274,32 L277,35 L283,29" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-                <text x="224" y="48" text-anchor="middle" font-size="13" font-weight="800" fill="#1e3a8a">PRUEBAS</text>
-                <text x="224" y="68" text-anchor="middle" font-size="11" font-weight="700" fill="#334155">App, Web y API</text>
-                <text x="224" y="84" text-anchor="middle" font-size="10" font-weight="600" fill="#64748b">en entorno aislado</text>
+                <!-- Card 2: Pruebas -->
+                <rect x="164" y="14" width="132" height="96" rx="12" fill="rgba(59,130,246,0.18)" stroke="#60a5fa" stroke-width="2"/>
+                <circle cx="278" cy="30" r="9" fill="#22c55e" class="svg-soft-pop"/>
+                <path d="M274,30 L277,33 L283,27" fill="none" stroke="#0f172a" stroke-width="2.2" stroke-linecap="round"/>
+                <rect x="176" y="27" width="22" height="16" rx="3" fill="#1d4ed8" stroke="#93c5fd" stroke-width="1.4"/>
+                <text x="234" y="47" text-anchor="middle" font-size="12.5" font-weight="800" fill="#ffffff">PRUEBAS</text>
+                <text x="230" y="74" text-anchor="middle" font-size="11" font-weight="700" fill="#93c5fd">App, Web y API</text>
+                <text x="230" y="92" text-anchor="middle" font-size="10" font-weight="600" fill="#cbd5e1">en entorno aislado</text>
 
-                <rect x="318" y="16" width="134" height="84" rx="12" fill="#ecfdf5" stroke="#1f6f4a" stroke-width="2"/>
-                <circle cx="434" cy="32" r="9" fill="#1f6f4a" class="svg-soft-pop"/>
-                <path d="M430,32 L433,35 L439,29" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-                <text x="378" y="48" text-anchor="middle" font-size="13" font-weight="800" fill="#14532d">CANDADO SP</text>
-                <text x="378" y="68" text-anchor="middle" font-size="11" font-weight="700" fill="#334155">Cero envíos reales</text>
-                <text x="378" y="84" text-anchor="middle" font-size="10" font-weight="600" fill="#64748b">durante pruebas</text>
+                <!-- Card 3: Candado SP -->
+                <rect x="318" y="14" width="134" height="96" rx="12" fill="rgba(34,197,94,0.16)" stroke="#4ade80" stroke-width="2"/>
+                <circle cx="434" cy="30" r="9" fill="#22c55e" class="svg-soft-pop"/>
+                <path d="M430,30 L433,33 L439,27" fill="none" stroke="#0f172a" stroke-width="2.2" stroke-linecap="round"/>
+                <rect x="330" y="34" width="16" height="13" rx="3" fill="#16a34a" stroke="#bbf7d0" stroke-width="1.4"/>
+                <path d="M333,34 L333,30 A5,5 0 0,1 343,30 L343,34" fill="none" stroke="#bbf7d0" stroke-width="1.8"/>
+                <text x="392" y="47" text-anchor="middle" font-size="12" font-weight="800" fill="#ffffff">CANDADO</text>
+                <text x="385" y="74" text-anchor="middle" font-size="11" font-weight="700" fill="#86efac">Cero envíos reales</text>
+                <text x="385" y="92" text-anchor="middle" font-size="10" font-weight="600" fill="#cbd5e1">durante pruebas</text>
               </svg>
             </div>
             <div class="bento-list">
@@ -2727,25 +2740,32 @@
               <span class="tag tag-amber">3 pasos finales</span>
             </div>
             <div class="panel-svg-wrap">
-              <svg viewBox="0 0 460 116" aria-hidden="true">
-                <line x1="140" y1="58" x2="166" y2="58" stroke="#d97706" stroke-width="2.5" class="svg-flow-line"/>
-                <line x1="294" y1="58" x2="320" y2="58" stroke="#d97706" stroke-width="2.5" class="svg-flow-line"/>
-                <circle r="4.5" fill="#d97706"><animateMotion dur="2.4s" repeatCount="indefinite" path="M140,58 L320,58"/></circle>
+              <svg viewBox="0 0 460 124" aria-hidden="true">
+                <line x1="140" y1="62" x2="166" y2="62" stroke="#fbbf24" stroke-width="2.6" class="svg-flow-fast"/>
+                <line x1="294" y1="62" x2="320" y2="62" stroke="#fbbf24" stroke-width="2.6" class="svg-flow-fast"/>
+                <circle r="3.8" fill="#fbbf24"><animateMotion dur="1.2s" repeatCount="indefinite" path="M140,62 L166,62"/></circle>
+                <circle r="3.8" fill="#fbbf24"><animateMotion dur="1.2s" begin="0.4s" repeatCount="indefinite" path="M294,62 L320,62"/></circle>
 
-                <rect x="8" y="16" width="132" height="84" rx="12" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
-                <text x="74" y="42" text-anchor="middle" font-size="11.5" font-weight="800" fill="#b45309">PASO 1</text>
-                <text x="74" y="62" text-anchor="middle" font-size="12.5" font-weight="800" fill="#78350f">Subir servicios</text>
-                <text x="74" y="80" text-anchor="middle" font-size="10.5" font-weight="700" fill="#475569">Auth + Backend</text>
+                <rect x="8" y="14" width="132" height="96" rx="12" fill="rgba(245,158,11,0.16)" stroke="#fbbf24" stroke-width="2"/>
+                <circle cx="32" cy="36" r="10" fill="#d97706" class="svg-soft-pop"/>
+                <text x="32" y="40" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">1</text>
+                <text x="86" y="40" text-anchor="middle" font-size="11.5" font-weight="800" fill="#fde68a">SERVIDOR</text>
+                <text x="74" y="72" text-anchor="middle" font-size="12" font-weight="800" fill="#ffffff">Subir servicios</text>
+                <text x="74" y="92" text-anchor="middle" font-size="10.5" font-weight="600" fill="#cbd5e1">Auth + Backend</text>
 
-                <rect x="166" y="16" width="128" height="84" rx="12" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
-                <text x="230" y="42" text-anchor="middle" font-size="11.5" font-weight="800" fill="#b45309">PASO 2</text>
-                <text x="230" y="62" text-anchor="middle" font-size="12.5" font-weight="800" fill="#78350f">Dominio y Maps</text>
-                <text x="230" y="80" text-anchor="middle" font-size="10.5" font-weight="700" fill="#475569">HTTPS · WSS · Key</text>
+                <rect x="166" y="14" width="128" height="96" rx="12" fill="rgba(245,158,11,0.16)" stroke="#fbbf24" stroke-width="2"/>
+                <circle cx="190" cy="36" r="10" fill="#d97706" class="svg-soft-pop"/>
+                <text x="190" y="40" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">2</text>
+                <text x="242" y="40" text-anchor="middle" font-size="11.5" font-weight="800" fill="#fde68a">DOMINIO</text>
+                <text x="230" y="72" text-anchor="middle" font-size="12" font-weight="800" fill="#ffffff">HTTPS y Maps</text>
+                <text x="230" y="92" text-anchor="middle" font-size="10.5" font-weight="600" fill="#cbd5e1">WSS · Llave oficial</text>
 
-                <rect x="320" y="16" width="132" height="84" rx="12" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
-                <text x="386" y="42" text-anchor="middle" font-size="11.5" font-weight="800" fill="#b45309">PASO 3</text>
-                <text x="386" y="62" text-anchor="middle" font-size="12.5" font-weight="800" fill="#78350f">Publicar App</text>
-                <text x="386" y="80" text-anchor="middle" font-size="10.5" font-weight="700" fill="#475569">Firma + Play Store</text>
+                <rect x="320" y="14" width="132" height="96" rx="12" fill="rgba(245,158,11,0.16)" stroke="#fbbf24" stroke-width="2"/>
+                <circle cx="344" cy="36" r="10" fill="#d97706" class="svg-soft-pop"/>
+                <text x="344" y="40" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">3</text>
+                <text x="398" y="40" text-anchor="middle" font-size="11.5" font-weight="800" fill="#fde68a">ANDROID</text>
+                <text x="386" y="72" text-anchor="middle" font-size="12" font-weight="800" fill="#ffffff">Publicar App</text>
+                <text x="386" y="92" text-anchor="middle" font-size="10.5" font-weight="600" fill="#cbd5e1">Firma + Play Store</text>
               </svg>
             </div>
             <div class="bento-list">
@@ -2781,27 +2801,27 @@
               <h3>Sistemas Palacios IPT</h3>
             </div>
             <div class="rec-svg-box">
-              <svg viewBox="0 0 290 96" aria-hidden="true">
-                <rect x="6" y="14" width="126" height="68" rx="10" fill="#fff1f2" stroke="#c40b2b" stroke-width="2"/>
+              <svg viewBox="0 0 290 108" aria-hidden="true">
+                <rect x="6" y="14" width="126" height="80" rx="11" fill="rgba(196,11,43,0.22)" stroke="#ff758f" stroke-width="2"/>
                 <g class="svg-gear-spin">
-                  <circle cx="28" cy="48" r="10" fill="none" stroke="#c40b2b" stroke-width="2.8" stroke-dasharray="4 3"/>
-                  <circle cx="28" cy="48" r="3.5" fill="#c40b2b"/>
+                  <circle cx="30" cy="54" r="11" fill="none" stroke="#fda4af" stroke-width="3" stroke-dasharray="5 3"/>
+                  <circle cx="30" cy="54" r="4" fill="#ff758f"/>
                 </g>
-                <text x="86" y="43" text-anchor="middle" font-size="11" font-weight="800" fill="#8f0a21">AMBIENTE</text>
-                <text x="86" y="59" text-anchor="middle" font-size="9.5" font-weight="700" fill="#334155">Responsable TI</text>
+                <text x="86" y="48" text-anchor="middle" font-size="11.5" font-weight="800" fill="#ffffff">PRODUCCIÓN</text>
+                <text x="86" y="66" text-anchor="middle" font-size="9.5" font-weight="700" fill="#fda4af">Responsable TI</text>
 
-                <line x1="132" y1="48" x2="160" y2="48" stroke="#c40b2b" stroke-width="2.5" class="svg-flow-line"/>
-                <circle r="4" fill="#c40b2b"><animateMotion dur="1.8s" repeatCount="indefinite" path="M132,48 L160,48"/></circle>
+                <line x1="132" y1="54" x2="160" y2="54" stroke="#ff758f" stroke-width="2.6" class="svg-flow-fast"/>
+                <circle r="4.5" fill="#fda4af"><animateMotion dur="1.7s" repeatCount="indefinite" path="M132,54 L160,54"/></circle>
 
-                <rect x="160" y="14" width="124" height="68" rx="10" fill="#ffffff" stroke="#c40b2b" stroke-width="2"/>
-                <circle cx="268" cy="28" r="6.5" fill="#22c55e" class="svg-soft-pop"/>
-                <text x="220" y="43" text-anchor="middle" font-size="11" font-weight="800" fill="#8f0a21">FLUJO ÁGIL</text>
-                <text x="220" y="59" text-anchor="middle" font-size="9.5" font-weight="700" fill="#334155">Sin pausas en dev</text>
+                <rect x="160" y="14" width="124" height="80" rx="11" fill="rgba(34,197,94,0.16)" stroke="#4ade80" stroke-width="2"/>
+                <circle cx="268" cy="29" r="7" fill="#22c55e" class="svg-soft-pop"/>
+                <text x="220" y="48" text-anchor="middle" font-size="11.5" font-weight="800" fill="#ffffff">FLUJO ÁGIL</text>
+                <text x="220" y="66" text-anchor="middle" font-size="9.5" font-weight="700" fill="#86efac">Desarrollo continuo</text>
+                <rect x="186" y="76" width="68" height="6" rx="3" fill="#4ade80" class="svg-soft-pop"/>
               </svg>
             </div>
             <div class="rec-items">
               <div class="rec-item">Fortalecer la gestión del ambiente de producción y asignar un responsable dedicado a su operación, para agilizar despliegues y mantener el ritmo del desarrollo.</div>
-              <div class="rec-item">Mantener actualizados los catálogos comerciales, las cuentas por rol y el monitoreo preventivo de los servicios.</div>
             </div>
             <div class="rec-foot">Enfoque: Operación estable que impulsa el desarrollo</div>
           </article>
@@ -2816,22 +2836,22 @@
               <h3>Universidad CESMAG</h3>
             </div>
             <div class="rec-svg-box">
-              <svg viewBox="0 0 270 96" aria-hidden="true">
+              <svg viewBox="0 0 290 108" aria-hidden="true">
                 <!-- Animated stacked architecture layers -->
-                <rect x="10" y="14" width="108" height="20" rx="5" fill="#1d4ed8" class="svg-soft-pop"/>
-                <text x="64" y="28" text-anchor="middle" font-size="9.5" font-weight="800" fill="#fff">WEB + MÓVIL</text>
-                <rect x="10" y="38" width="108" height="20" rx="5" fill="#3b82f6"/>
-                <text x="64" y="52" text-anchor="middle" font-size="9.5" font-weight="800" fill="#fff">MICROSERVICIOS</text>
-                <rect x="10" y="62" width="108" height="20" rx="5" fill="#1e3a8a"/>
-                <text x="64" y="76" text-anchor="middle" font-size="9.5" font-weight="800" fill="#fff">STACK LABORAL</text>
+                <rect x="8" y="14" width="124" height="22" rx="6" fill="#2563eb" stroke="#93c5fd" stroke-width="1.4" class="svg-soft-pop"/>
+                <text x="70" y="29" text-anchor="middle" font-size="10" font-weight="800" fill="#ffffff">WEB + MÓVIL</text>
+                <rect x="8" y="43" width="124" height="22" rx="6" fill="#1d4ed8" stroke="#60a5fa" stroke-width="1.4"/>
+                <text x="70" y="58" text-anchor="middle" font-size="10" font-weight="800" fill="#ffffff">MICROSERVICIOS</text>
+                <rect x="8" y="72" width="124" height="22" rx="6" fill="#1e3a8a" stroke="#60a5fa" stroke-width="1.4"/>
+                <text x="70" y="87" text-anchor="middle" font-size="10" font-weight="800" fill="#dbeafe">STACK LABORAL</text>
 
-                <line x1="118" y1="48" x2="150" y2="48" stroke="#1d4ed8" stroke-width="2.5" class="svg-flow-line"/>
-                <circle r="4" fill="#1d4ed8"><animateMotion dur="1.8s" begin="0.4s" repeatCount="indefinite" path="M118,48 L150,48"/></circle>
+                <line x1="132" y1="54" x2="160" y2="54" stroke="#60a5fa" stroke-width="2.6" class="svg-flow-fast"/>
+                <circle r="4.5" fill="#93c5fd"><animateMotion dur="1.7s" begin="0.4s" repeatCount="indefinite" path="M132,54 L160,54"/></circle>
 
-                <rect x="150" y="14" width="112" height="68" rx="10" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2"/>
-                <text x="206" y="42" text-anchor="middle" font-size="11.5" font-weight="800" fill="#1e3a8a">DOCUMENTAR</text>
-                <text x="206" y="58" text-anchor="middle" font-size="10" font-weight="700" fill="#334155">Arquitectura + API</text>
-                <rect x="172" y="66" width="68" height="6" rx="3" fill="#93c5fd" class="svg-soft-pop"/>
+                <rect x="160" y="14" width="124" height="80" rx="11" fill="rgba(59,130,246,0.2)" stroke="#60a5fa" stroke-width="2"/>
+                <text x="222" y="45" text-anchor="middle" font-size="11.5" font-weight="800" fill="#ffffff">DOCUMENTAR</text>
+                <text x="222" y="63" text-anchor="middle" font-size="9.5" font-weight="700" fill="#93c5fd">Arquitectura + API</text>
+                <rect x="188" y="74" width="68" height="6" rx="3" fill="#60a5fa" class="svg-soft-pop"/>
               </svg>
             </div>
             <div class="rec-items">
@@ -2851,20 +2871,20 @@
               <h3>Próximos practicantes</h3>
             </div>
             <div class="rec-svg-box">
-              <svg viewBox="0 0 290 96" aria-hidden="true">
-                <rect x="6" y="14" width="126" height="68" rx="10" fill="#ecfdf5" stroke="#1f6f4a" stroke-width="2"/>
-                <path d="M29,30 L42,35 L42,47 C42,56 36,61 29,65 C22,61 16,56 16,47 L16,35 Z" fill="#1f6f4a" class="svg-soft-pop"/>
-                <path d="M24,47 L28,51 L35,43" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-                <text x="88" y="43" text-anchor="middle" font-size="10.5" font-weight="800" fill="#14532d">PROTOCOLO</text>
-                <text x="88" y="59" text-anchor="middle" font-size="9.5" font-weight="700" fill="#334155">Cuidar PDN</text>
+              <svg viewBox="0 0 290 108" aria-hidden="true">
+                <rect x="6" y="14" width="126" height="80" rx="11" fill="rgba(34,197,94,0.18)" stroke="#4ade80" stroke-width="2"/>
+                <path d="M30,33 L44,38 L44,52 C44,61 38,67 30,71 C22,67 16,61 16,52 L16,38 Z" fill="#16a34a" stroke="#bbf7d0" stroke-width="1.5" class="svg-soft-pop"/>
+                <path d="M25,52 L29,56 L36,48" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+                <text x="88" y="48" text-anchor="middle" font-size="10.5" font-weight="800" fill="#ffffff">PROTOCOLO</text>
+                <text x="88" y="66" text-anchor="middle" font-size="9.5" font-weight="700" fill="#86efac">Cuidar PDN</text>
 
-                <line x1="132" y1="48" x2="160" y2="48" stroke="#1f6f4a" stroke-width="2.5" class="svg-flow-line"/>
-                <circle r="4" fill="#1f6f4a"><animateMotion dur="1.8s" begin="0.8s" repeatCount="indefinite" path="M132,48 L160,48"/></circle>
+                <line x1="132" y1="54" x2="160" y2="54" stroke="#4ade80" stroke-width="2.6" class="svg-flow-fast"/>
+                <circle r="4.5" fill="#4ade80"><animateMotion dur="1.7s" begin="0.8s" repeatCount="indefinite" path="M132,54 L160,54"/></circle>
 
-                <rect x="160" y="14" width="124" height="68" rx="10" fill="#ffffff" stroke="#1f6f4a" stroke-width="2"/>
-                <text x="222" y="42" text-anchor="middle" font-size="11" font-weight="800" fill="#14532d">EVIDENCIA</text>
-                <text x="222" y="58" text-anchor="middle" font-size="9.5" font-weight="700" fill="#334155">Docs + Pruebas</text>
-                <rect x="188" y="66" width="68" height="6" rx="3" fill="#86efac" class="svg-soft-pop"/>
+                <rect x="160" y="14" width="124" height="80" rx="11" fill="rgba(255,255,255,0.08)" stroke="#4ade80" stroke-width="2"/>
+                <text x="222" y="45" text-anchor="middle" font-size="11.5" font-weight="800" fill="#ffffff">EVIDENCIA</text>
+                <text x="222" y="63" text-anchor="middle" font-size="9.5" font-weight="700" fill="#86efac">Docs + Pruebas</text>
+                <rect x="188" y="74" width="68" height="6" rx="3" fill="#4ade80" class="svg-soft-pop"/>
               </svg>
             </div>
             <div class="rec-items">
@@ -3346,22 +3366,53 @@
     let currentWebTab = 0;
     let webShowVideo = true;
     let webTabTimer = null;
+    let webStaticProgressTimer = null;
+
+    function advanceWebTab() {
+      if (current !== 7) { stopAutoWebTabs(); return; }
+      const nextIdx = (currentWebTab + 1) % webTabs.length;
+      const btn = document.querySelectorAll('.tab-btn')[nextIdx];
+      if (btn) showWebTab(nextIdx, btn, false);
+      startAutoWebTabs();
+    }
 
     function stopAutoWebTabs() {
       if (webTabTimer) { clearTimeout(webTabTimer); webTabTimer = null; }
+      if (webStaticProgressTimer) { clearInterval(webStaticProgressTimer); webStaticProgressTimer = null; }
+      const vid = document.getElementById('webVideo');
+      if (vid) { vid.onended = null; vid.ontimeupdate = null; }
     }
 
     function startAutoWebTabs() {
       stopAutoWebTabs();
+      const fill = document.getElementById('webProgressFill');
+      if (fill) fill.style.width = '0%';
       if (prefersReducedMotion || current !== 7) return;
-      const dwell = (webTabs[currentWebTab] && webTabs[currentWebTab].dwell) || 5000;
-      webTabTimer = setTimeout(() => {
-        if (current !== 7) { stopAutoWebTabs(); return; }
-        const nextIdx = (currentWebTab + 1) % webTabs.length;
-        const btn = document.querySelectorAll('.tab-btn')[nextIdx];
-        if (btn) showWebTab(nextIdx, btn, false);
-        startAutoWebTabs();
-      }, dwell);
+      const t = webTabs[currentWebTab];
+      const vid = document.getElementById('webVideo');
+      const isPlayingVideo = Boolean(t && t.video && webShowVideo);
+      if (isPlayingVideo && vid) {
+        vid.loop = false;
+        vid.ontimeupdate = () => {
+          if (fill && vid.duration && Number.isFinite(vid.duration)) {
+            fill.style.width = `${Math.min(100, (vid.currentTime / vid.duration) * 100)}%`;
+          }
+        };
+        vid.onended = () => {
+          if (fill) fill.style.width = '100%';
+          advanceWebTab();
+        };
+      } else {
+        const dwell = (t && t.dwell) || 4500;
+        const started = Date.now();
+        webStaticProgressTimer = setInterval(() => {
+          if (fill) fill.style.width = `${Math.min(100, ((Date.now() - started) / dwell) * 100)}%`;
+        }, 120);
+        webTabTimer = setTimeout(() => {
+          if (fill) fill.style.width = '100%';
+          advanceWebTab();
+        }, dwell);
+      }
     }
 
     function renderWebMedia() {
