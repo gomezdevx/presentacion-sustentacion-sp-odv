@@ -709,13 +709,14 @@
     }
     .rec-num {
       position: absolute;
-      top: 10px;
-      right: 18px;
+      bottom: 8px;
+      right: 16px;
       font-family: var(--font-head);
-      font-size: 54px;
+      font-size: 46px;
       font-weight: 700;
       color: rgba(15, 23, 42, 0.045);
       line-height: 1;
+      pointer-events: none;
     }
     .rec-logo {
       display: block;
@@ -1521,23 +1522,24 @@
       background: #f8fafc;
     }
     .web-info {
-      padding: clamp(16px, 2vh, 22px);
+      padding: clamp(12px, 1.5vh, 20px);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 12px;
+      gap: clamp(8px, 1vh, 12px);
+      min-height: 0;
     }
-    .web-info h3 { margin-top: 8px; font-size: clamp(19px, 1.45cqi, 23px); }
-    .web-info p { font-size: clamp(14px, 1.05cqi, 16.5px); line-height: 1.45; }
+    .web-info h3 { margin-top: 6px; font-size: clamp(17.5px, 1.35cqi, 22px); }
+    .web-info p { font-size: clamp(13px, 1cqi, 15.5px); line-height: 1.4; }
     .web-points-box {
       background: #f8fafc;
       border: 1px solid #e2e8f0;
       border-radius: 12px;
-      padding: 12px 15px;
+      padding: clamp(9px, 1.1vh, 12px) 13px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 9px;
+      gap: clamp(6px, 0.8vh, 8px);
     }
     .web-points-box small {
       font-size: 10.5px;
@@ -1547,7 +1549,7 @@
       color: var(--brand-deep);
     }
     .web-point-item {
-      font-size: clamp(13px, 1cqi, 15px);
+      font-size: clamp(12.2px, 0.94cqi, 14.5px);
       font-weight: 600;
       color: #1e293b;
       display: flex;
@@ -1556,7 +1558,8 @@
       background: #ffffff;
       border: 1px solid #e2e8f0;
       border-radius: 8px;
-      padding: 8px 10px;
+      padding: clamp(6px, 0.75vh, 8px) 10px;
+      line-height: 1.3;
     }
     .web-point-item::before {
       content: '';
@@ -1566,10 +1569,10 @@
       background: var(--brand);
       flex-shrink: 0;
     }
-    .circuit-svg-wrap { flex: 1; min-height: 74px; margin-top: 6px; background: #fff; border: 1px solid #cbd5e1; border-radius: 8px; padding: 6px; display: flex; align-items: center; justify-content: center; }
-    .circuit-svg-wrap svg { width: 100%; height: 100%; max-height: 115px; display: block; flex: none; pointer-events: none; }
-    .role-note { flex: 1; display: flex; flex-direction: column; justify-content: space-between; padding: 12px 14px; }
-    .role-note span { margin-top: 6px; font-size: 12px; line-height: 1.4; }
+    .circuit-svg-wrap { flex: 1; min-height: 58px; margin-top: 4px; background: #fff; border: 1px solid #cbd5e1; border-radius: 8px; padding: 5px; display: flex; align-items: center; justify-content: center; }
+    .circuit-svg-wrap svg { width: 100%; height: 100%; max-height: 100px; display: block; flex: none; pointer-events: none; }
+    .role-note { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(9px, 1.1vh, 12px) 13px; }
+    .role-note span { margin-top: 4px; font-size: 11.5px; line-height: 1.35; }
 
     /* Slide 10 Recommendations Full-Card Bento */
     .rec-col {
@@ -1583,8 +1586,8 @@
     .rec-logo, .rec-monogram { height: 42px; margin-bottom: 0; }
     .rec-col h3 { font-size: clamp(19px, 1.45cqi, 24px); margin: 6px 0 0; }
     .rec-svg-box {
-      flex: 1;
-      min-height: 108px;
+      flex: none;
+      height: clamp(148px, 22vh, 215px);
       background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
       border: 1px solid #334155;
       border-radius: 14px;
@@ -1595,7 +1598,7 @@
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
     }
     .rec-svg-box svg { width: 100%; height: 100%; max-height: 175px; display: block; flex: none; pointer-events: none; }
-    .rec-items { display: flex; flex-direction: column; gap: 8px; }
+    .rec-items { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 10px; }
     .rec-item {
       background: #f8fafc;
       border: 1px solid #e2e8f0;
@@ -1760,12 +1763,29 @@
       border-radius: 16px;
       padding: 12px 18px;
       backdrop-filter: blur(8px);
+      box-shadow: 0 18px 46px rgba(0, 0, 0, 0.35), 0 0 40px rgba(196, 11, 43, 0.14);
     }
-    .closing-eco-strip svg { width: 100%; height: 74px; display: block; }
-    .closing-animated .meta-chip { animation: closingChipFloat 4.2s ease-in-out infinite; }
+    .closing-eco-strip svg { width: 100%; height: 78px; display: block; }
+    .closing-animated .meta-chip {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      animation: closingChipFloat 4.2s ease-in-out infinite;
+    }
     .closing-animated .meta-chip:nth-child(2) { animation-delay: 0.6s; }
     .closing-animated .meta-chip:nth-child(3) { animation-delay: 1.2s; }
     .closing-animated .meta-chip:nth-child(4) { animation-delay: 1.8s; }
+    .closing-glow-orb {
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(196, 11, 43, 0.26) 0%, rgba(196, 11, 43, 0) 70%);
+      pointer-events: none;
+      animation: svgSoftPop 5.5s ease-in-out infinite;
+    }
 
     @media (prefers-reduced-motion: reduce) {
       .svg-radar-sweep, .svg-pin-bounce, .svg-blink-cursor, .svg-soft-pop, .svg-notif-slide,
@@ -2164,14 +2184,17 @@
                   <text x="250" y="31" text-anchor="middle" font-size="13" font-weight="800" fill="#f8fafc">WEB ANGULAR</text>
                   <rect x="345" y="10" width="130" height="32" rx="7" fill="#1e293b" stroke="#64748b" stroke-width="1.8"/>
                   <text x="410" y="31" text-anchor="middle" font-size="13" font-weight="800" fill="#f8fafc">PORTAL PÚBLICO</text>
-                  <!-- Animated lines into Gateway -->
+                  <!-- Animated lines into Gateway + moving data packets -->
                   <line x1="90" y1="42" x2="250" y2="62" stroke="#ff758f" stroke-width="2" class="svg-flow-line"/>
                   <line x1="250" y1="42" x2="250" y2="62" stroke="#ff758f" stroke-width="2" class="svg-flow-line"/>
                   <line x1="410" y1="42" x2="250" y2="62" stroke="#ff758f" stroke-width="2" class="svg-flow-line"/>
+                  <circle r="3.2" fill="#fda4af"><animateMotion dur="2s" repeatCount="indefinite" path="M90,42 L250,62"/></circle>
+                  <circle r="3.2" fill="#fda4af"><animateMotion dur="2s" begin="0.5s" repeatCount="indefinite" path="M250,42 L250,62"/></circle>
+                  <circle r="3.2" fill="#fda4af"><animateMotion dur="2s" begin="1s" repeatCount="indefinite" path="M410,42 L250,62"/></circle>
                   <!-- Node 0: API Gateway -->
                   <g class="arch-svg-node is-active" data-arch-node="0">
                     <rect x="75" y="60" width="350" height="34" rx="8" fill="#1e293b" stroke="#94a3b8" stroke-width="2"/>
-                    <text x="250" y="82" text-anchor="middle" font-size="14" font-weight="800" fill="#ffffff">API GATEWAY + CONSUL (:50000)</text>
+                    <text x="250" y="82" text-anchor="middle" font-size="14" font-weight="800" fill="#ffffff">API GATEWAY + CONSUL (:50020)</text>
                   </g>
                   <!-- Fan-out lines to microservices -->
                   <line x1="120" y1="94" x2="55" y2="118" stroke="#64748b" stroke-width="1.8" class="svg-flow-line"/>
@@ -2179,6 +2202,11 @@
                   <line x1="250" y1="94" x2="250" y2="118" stroke="#64748b" stroke-width="1.8" class="svg-flow-line"/>
                   <line x1="325" y1="94" x2="348" y2="118" stroke="#64748b" stroke-width="1.8" class="svg-flow-line"/>
                   <line x1="380" y1="94" x2="445" y2="118" stroke="#64748b" stroke-width="1.8" class="svg-flow-line"/>
+                  <circle r="2.8" fill="#93c5fd"><animateMotion dur="2.2s" repeatCount="indefinite" path="M120,94 L55,118"/></circle>
+                  <circle r="2.8" fill="#93c5fd"><animateMotion dur="2.2s" begin="0.4s" repeatCount="indefinite" path="M175,94 L152,118"/></circle>
+                  <circle r="2.8" fill="#93c5fd"><animateMotion dur="2.2s" begin="0.8s" repeatCount="indefinite" path="M250,94 L250,118"/></circle>
+                  <circle r="2.8" fill="#93c5fd"><animateMotion dur="2.2s" begin="1.2s" repeatCount="indefinite" path="M325,94 L348,118"/></circle>
+                  <circle r="2.8" fill="#93c5fd"><animateMotion dur="2.2s" begin="1.6s" repeatCount="indefinite" path="M380,94 L445,118"/></circle>
                   <!-- Nodes 1..5 -->
                   <g class="arch-svg-node" data-arch-node="1">
                     <rect x="10" y="118" width="90" height="44" rx="7" fill="#1e293b" stroke="#64748b" stroke-width="1.8"/>
@@ -2510,61 +2538,61 @@
             <span class="tag tag-blue">Recorrido automático continuo</span>
           </div>
           <div class="flow-svg-banner">
-            <svg viewBox="0 0 1120 168" aria-hidden="true">
+            <svg viewBox="0 0 1120 180" aria-hidden="true">
               <!-- Forward conduits with traveling data packets -->
-              <path d="M134,56 L296,56" stroke="#ff758f" stroke-width="3.5" class="svg-flow-fast"/>
-              <circle r="5.5" fill="#fda4af"><animateMotion dur="1.8s" repeatCount="indefinite" path="M134,56 L296,56"/></circle>
+              <path d="M134,54 L296,54" stroke="#ff758f" stroke-width="3.5" class="svg-flow-fast"/>
+              <circle r="5.5" fill="#fda4af"><animateMotion dur="1.8s" repeatCount="indefinite" path="M134,54 L296,54"/></circle>
 
-              <path d="M374,56 L516,56" stroke="#ff758f" stroke-width="3.5" class="svg-flow-fast"/>
-              <circle r="5.5" fill="#fda4af"><animateMotion dur="1.8s" begin="0.35s" repeatCount="indefinite" path="M374,56 L516,56"/></circle>
+              <path d="M374,54 L516,54" stroke="#ff758f" stroke-width="3.5" class="svg-flow-fast"/>
+              <circle r="5.5" fill="#fda4af"><animateMotion dur="1.8s" begin="0.35s" repeatCount="indefinite" path="M374,54 L516,54"/></circle>
 
-              <path d="M594,56 L736,56" stroke="#ff758f" stroke-width="3.5" class="svg-flow-fast"/>
-              <circle r="5.5" fill="#fda4af"><animateMotion dur="1.8s" begin="0.7s" repeatCount="indefinite" path="M594,56 L736,56"/></circle>
+              <path d="M594,54 L736,54" stroke="#ff758f" stroke-width="3.5" class="svg-flow-fast"/>
+              <circle r="5.5" fill="#fda4af"><animateMotion dur="1.8s" begin="0.7s" repeatCount="indefinite" path="M594,54 L736,54"/></circle>
 
-              <path d="M814,56 L976,56" stroke="#4ade80" stroke-width="3.5" class="svg-flow-fast"/>
-              <circle r="5.5" fill="#4ade80"><animateMotion dur="1.8s" begin="1.05s" repeatCount="indefinite" path="M814,56 L976,56"/></circle>
+              <path d="M814,54 L976,54" stroke="#4ade80" stroke-width="3.5" class="svg-flow-fast"/>
+              <circle r="5.5" fill="#4ade80"><animateMotion dur="1.8s" begin="1.05s" repeatCount="indefinite" path="M814,54 L976,54"/></circle>
 
-              <!-- Return feedback arc (de vuelta al responsable) -->
-              <path d="M1015,96 C1015,154 95,154 95,96" fill="none" stroke="#60a5fa" stroke-width="2.4" class="svg-flow-return"/>
-              <circle r="4.5" fill="#93c5fd"><animateMotion dur="4.2s" repeatCount="indefinite" path="M1015,96 C1015,154 95,154 95,96"/></circle>
-              <rect x="405" y="138" width="310" height="22" rx="11" fill="#0f172a" stroke="#60a5fa" stroke-width="1.4"/>
-              <text x="560" y="153" text-anchor="middle" font-size="11.5" font-weight="800" fill="#93c5fd">← Respuesta, devolución o aviso push al asesor</text>
+              <!-- Clean Return feedback arc cleanly BELOW station labels -->
+              <path d="M1015,124 C1015,166 95,166 95,124" fill="none" stroke="#60a5fa" stroke-width="2.4" class="svg-flow-return"/>
+              <circle r="4.5" fill="#93c5fd"><animateMotion dur="4.2s" repeatCount="indefinite" path="M1015,124 C1015,166 95,166 95,124"/></circle>
+              <rect x="400" y="148" width="320" height="24" rx="12" fill="#0f172a" stroke="#60a5fa" stroke-width="1.5"/>
+              <text x="560" y="164" text-anchor="middle" font-size="11.5" font-weight="800" fill="#93c5fd">← Respuesta, devolución o aviso push al asesor</text>
 
               <!-- 5 Prominent Stations -->
               <g class="flow-svg-station is-lit" id="svgSt0">
-                <circle class="st-halo" cx="95" cy="56" r="38" fill="none" stroke="#ff758f" stroke-width="2.5"/>
-                <circle class="st-ring" cx="95" cy="56" r="36" fill="#1e293b" stroke="#64748b" stroke-width="2.5"/>
-                <text x="95" y="54" text-anchor="middle" font-size="15" font-weight="800" fill="#fff">APP</text>
-                <text x="95" y="70" text-anchor="middle" font-size="10.5" font-weight="700" fill="#fda4af">Flutter</text>
-                <text x="95" y="114" text-anchor="middle" font-size="13.5" font-weight="800" fill="#ffffff">1. Captura</text>
+                <circle class="st-halo" cx="95" cy="54" r="38" fill="none" stroke="#ff758f" stroke-width="2.5"/>
+                <circle class="st-ring" cx="95" cy="54" r="36" fill="#1e293b" stroke="#64748b" stroke-width="2.5"/>
+                <text x="95" y="52" text-anchor="middle" font-size="15" font-weight="800" fill="#fff">APP</text>
+                <text x="95" y="68" text-anchor="middle" font-size="10.5" font-weight="700" fill="#fda4af">Flutter</text>
+                <text x="95" y="112" text-anchor="middle" font-size="13.5" font-weight="800" fill="#ffffff">1. Captura</text>
               </g>
               <g class="flow-svg-station" id="svgSt1">
-                <circle class="st-halo" cx="335" cy="56" r="38" fill="none" stroke="#ff758f" stroke-width="2.5"/>
-                <circle class="st-ring" cx="335" cy="56" r="36" fill="#1e293b" stroke="#64748b" stroke-width="2.5"/>
-                <text x="335" y="54" text-anchor="middle" font-size="15" font-weight="800" fill="#fff">API</text>
-                <text x="335" y="70" text-anchor="middle" font-size="10.5" font-weight="700" fill="#fda4af">D20 + BD</text>
-                <text x="335" y="114" text-anchor="middle" font-size="13.5" font-weight="800" fill="#ffffff">2. Validación</text>
+                <circle class="st-halo" cx="335" cy="54" r="38" fill="none" stroke="#ff758f" stroke-width="2.5"/>
+                <circle class="st-ring" cx="335" cy="54" r="36" fill="#1e293b" stroke="#64748b" stroke-width="2.5"/>
+                <text x="335" y="52" text-anchor="middle" font-size="15" font-weight="800" fill="#fff">API</text>
+                <text x="335" y="68" text-anchor="middle" font-size="10.5" font-weight="700" fill="#fda4af">D20 + BD</text>
+                <text x="335" y="112" text-anchor="middle" font-size="13.5" font-weight="800" fill="#ffffff">2. Validación</text>
               </g>
               <g class="flow-svg-station" id="svgSt2">
-                <circle class="st-halo" cx="555" cy="56" r="38" fill="none" stroke="#ff758f" stroke-width="2.5"/>
-                <circle class="st-ring" cx="555" cy="56" r="36" fill="#1e293b" stroke="#64748b" stroke-width="2.5"/>
-                <text x="555" y="54" text-anchor="middle" font-size="15" font-weight="800" fill="#fff">WSS</text>
-                <text x="555" y="70" text-anchor="middle" font-size="10.5" font-weight="700" fill="#fda4af">Outbox</text>
-                <text x="555" y="114" text-anchor="middle" font-size="13.5" font-weight="800" fill="#ffffff">3. Tiempo real</text>
+                <circle class="st-halo" cx="555" cy="54" r="38" fill="none" stroke="#ff758f" stroke-width="2.5"/>
+                <circle class="st-ring" cx="555" cy="54" r="36" fill="#1e293b" stroke="#64748b" stroke-width="2.5"/>
+                <text x="555" y="52" text-anchor="middle" font-size="15" font-weight="800" fill="#fff">WSS</text>
+                <text x="555" y="68" text-anchor="middle" font-size="10.5" font-weight="700" fill="#fda4af">Outbox</text>
+                <text x="555" y="112" text-anchor="middle" font-size="13.5" font-weight="800" fill="#ffffff">3. Tiempo real</text>
               </g>
               <g class="flow-svg-station" id="svgSt3">
-                <circle class="st-halo" cx="775" cy="56" r="38" fill="none" stroke="#ff758f" stroke-width="2.5"/>
-                <circle class="st-ring" cx="775" cy="56" r="36" fill="#1e293b" stroke="#64748b" stroke-width="2.5"/>
-                <text x="775" y="54" text-anchor="middle" font-size="15" font-weight="800" fill="#fff">WEB</text>
-                <text x="775" y="70" text-anchor="middle" font-size="10.5" font-weight="700" fill="#fda4af">Revisión</text>
-                <text x="775" y="114" text-anchor="middle" font-size="13.5" font-weight="800" fill="#ffffff">4. Decisión</text>
+                <circle class="st-halo" cx="775" cy="54" r="38" fill="none" stroke="#ff758f" stroke-width="2.5"/>
+                <circle class="st-ring" cx="775" cy="54" r="36" fill="#1e293b" stroke="#64748b" stroke-width="2.5"/>
+                <text x="775" y="52" text-anchor="middle" font-size="15" font-weight="800" fill="#fff">WEB</text>
+                <text x="775" y="68" text-anchor="middle" font-size="10.5" font-weight="700" fill="#fda4af">Revisión</text>
+                <text x="775" y="112" text-anchor="middle" font-size="13.5" font-weight="800" fill="#ffffff">4. Decisión</text>
               </g>
               <g class="flow-svg-station" id="svgSt4">
-                <circle class="st-halo" cx="1015" cy="56" r="38" fill="none" stroke="#4ade80" stroke-width="2.5"/>
-                <circle class="st-ring" cx="1015" cy="56" r="36" fill="#1e293b" stroke="#64748b" stroke-width="2.5"/>
-                <text x="1015" y="54" text-anchor="middle" font-size="15" font-weight="800" fill="#fff">FCM</text>
-                <text x="1015" y="70" text-anchor="middle" font-size="10.5" font-weight="700" fill="#86efac">Push + SP</text>
-                <text x="1015" y="114" text-anchor="middle" font-size="13.5" font-weight="800" fill="#ffffff">5. Seguimiento</text>
+                <circle class="st-halo" cx="1015" cy="54" r="38" fill="none" stroke="#4ade80" stroke-width="2.5"/>
+                <circle class="st-ring" cx="1015" cy="54" r="36" fill="#1e293b" stroke="#64748b" stroke-width="2.5"/>
+                <text x="1015" y="52" text-anchor="middle" font-size="15" font-weight="800" fill="#fff">FCM</text>
+                <text x="1015" y="68" text-anchor="middle" font-size="10.5" font-weight="700" fill="#86efac">Push + SP</text>
+                <text x="1015" y="112" text-anchor="middle" font-size="13.5" font-weight="800" fill="#ffffff">5. Seguimiento</text>
               </g>
             </svg>
           </div>
@@ -2698,10 +2726,10 @@
 
                 <!-- Card 1: Seguridad -->
                 <rect x="8" y="14" width="134" height="96" rx="12" fill="rgba(196,11,43,0.18)" stroke="#ff758f" stroke-width="2"/>
-                <circle cx="124" cy="30" r="9" fill="#22c55e" class="svg-soft-pop"/>
-                <path d="M120,30 L123,33 L129,27" fill="none" stroke="#0f172a" stroke-width="2.2" stroke-linecap="round"/>
-                <path d="M32,26 L42,30 L42,39 C42,46 37,50 32,53 C27,50 22,46 22,39 L22,30 Z" fill="#c40b2b" stroke="#fda4af" stroke-width="1.5"/>
-                <text x="78" y="47" text-anchor="middle" font-size="12.5" font-weight="800" fill="#ffffff">SEGURIDAD</text>
+                <circle cx="126" cy="30" r="8.5" fill="#22c55e" class="svg-soft-pop"/>
+                <path d="M122.5,30 L125,32.5 L130,27.5" fill="none" stroke="#0f172a" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M25,28 L34,31.5 L34,40 C34,46 30,49.5 25,52 C20,49.5 16,46 16,40 L16,31.5 Z" fill="#c40b2b" stroke="#fda4af" stroke-width="1.5"/>
+                <text x="79" y="46" text-anchor="middle" font-size="11.5" font-weight="800" fill="#ffffff">SEGURIDAD</text>
                 <text x="75" y="74" text-anchor="middle" font-size="11" font-weight="700" fill="#fda4af">Acceso por rol</text>
                 <text x="75" y="92" text-anchor="middle" font-size="10" font-weight="600" fill="#cbd5e1">y cierre de sesión</text>
 
@@ -2769,9 +2797,9 @@
               </svg>
             </div>
             <div class="bento-list">
-              <div class="bento-row"><div class="bento-row-text"><span class="bento-dot"></span><span><strong>Publicar en servidor final:</strong> desplegar la autenticación y los microservicios con TI.</span></div><span class="bento-badge">Paso 1</span></div>
-              <div class="bento-row"><div class="bento-row-text"><span class="bento-dot"></span><span><strong>Activar dominio real:</strong> verificar HTTPS, tiempo real y llave oficial de Google Maps.</span></div><span class="bento-badge">Paso 2</span></div>
-              <div class="bento-row"><div class="bento-row-text"><span class="bento-dot"></span><span><strong>Entregar a asesores:</strong> firmar la app Android y publicarla en Google Play.</span></div><span class="bento-badge">Paso 3</span></div>
+              <div class="bento-row"><div class="bento-row-text"><span class="bento-dot"></span><span><strong>Publicar servicios:</strong> desplegar autenticación y backend con el área TI.</span></div><span class="bento-badge">Paso 1</span></div>
+              <div class="bento-row"><div class="bento-row-text"><span class="bento-dot"></span><span><strong>Activar dominio:</strong> validar HTTPS, WebSocket y llave oficial de Maps.</span></div><span class="bento-badge">Paso 2</span></div>
+              <div class="bento-row"><div class="bento-row-text"><span class="bento-dot"></span><span><strong>Entregar a asesores:</strong> firmar la app Android y subirla a Google Play.</span></div><span class="bento-badge">Paso 3</span></div>
             </div>
           </article>
         </div>
@@ -2902,9 +2930,12 @@
     <!-- SLIDE 11: CIERRE -->
     <section class="slide slide-dark closing-animated" data-title="Gracias por su atención" data-duration="10" data-notes="9:50–10:00 · Agradece a Sistemas Palacios IPT, al tutor y a la Universidad CESMAG. Cierra con una frase sobre el aporte del proyecto.">
       <div class="aurora-bg">
+        <div class="closing-glow-orb" aria-hidden="true"></div>
         <svg viewBox="0 0 1440 800" preserveAspectRatio="none">
           <path d="M-100,640 C280,440 620,700 1000,380 C1240,180 1380,260 1560,120" fill="none" stroke="#c40b2b" stroke-width="3.2" opacity="0.65"/>
+          <circle r="4.5" fill="#ff758f"><animateMotion dur="9s" repeatCount="indefinite" path="M-100,640 C280,440 620,700 1000,380 C1240,180 1380,260 1560,120"/></circle>
           <path d="M-80,180 C340,340 760,120 1160,340 C1340,420 1450,360 1560,290" fill="none" stroke="#ff758f" stroke-width="2" opacity="0.34" class="svg-flow-line"/>
+          <circle r="3.5" fill="#fda4af"><animateMotion dur="11s" repeatCount="indefinite" path="M-80,180 C340,340 760,120 1160,340 C1340,420 1450,360 1560,290"/></circle>
           <circle cx="220" cy="180" r="88" fill="none" stroke="#ff758f" stroke-width="1.2" opacity="0.18" class="svg-pulse-ring"/>
           <circle cx="1220" cy="610" r="110" fill="none" stroke="#c40b2b" stroke-width="1.4" opacity="0.22" class="svg-pulse-ring"/>
         </svg>
@@ -3105,6 +3136,11 @@
       const vid = document.getElementById('lightboxVideo');
       if (vid) { vid.pause(); vid.hidden = true; }
       toggleModal('lightbox', false);
+      if (current === 7) {
+        const wv = document.getElementById('webVideo');
+        if (wv && !wv.hidden && !prefersReducedMotion) wv.play?.().catch(() => {});
+        startAutoWebTabs();
+      }
     }
 
     // Reveal subtle bottom-right corner pager briefly on mouse move
@@ -3293,6 +3329,7 @@
     "desc": "Recorrido real en 4 pasos: centrado por municipio y sector DANE, sugerencias de dirección, alternancia Satelital / Calles, ajuste de pin y radicado ODV.",
     "img": "./assets/web_publica_mapa.png",
     "video": "./assets/videos/clip_solicitud_publica.webm",
+    "startAt": 0.9,
     "dwell": 12000,
     "pts": ["Centrado territorial DANE y sugerencias verificadas en Pasto", "Alternancia Satelital / Calles y pin con geocodificación inversa", "Decisión entre dirección sugerida o escrita + radicado en 4 pasos"]
   },
@@ -3432,7 +3469,12 @@
           vid.src = t.video;
         }
         vid.poster = t.img;
-        vid.currentTime = 0;
+        const startOffset = t.startAt || 0;
+        if (vid.readyState >= 1) {
+          vid.currentTime = startOffset;
+        } else {
+          vid.addEventListener('loadedmetadata', () => { vid.currentTime = startOffset; }, { once: true });
+        }
         if (current === 7 && !prefersReducedMotion) vid.play?.().catch(() => {});
         modeBtn.textContent = 'Ver captura';
         modeBtn.classList.add('is-video');
