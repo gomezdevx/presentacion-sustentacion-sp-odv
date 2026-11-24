@@ -1509,8 +1509,8 @@
     .browser-video, .browser-img-wrap img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      object-position: top center;
+      object-fit: contain;
+      background: #f8fafc;
     }
     .web-info {
       padding: clamp(16px, 2vh, 22px);
@@ -1770,7 +1770,7 @@
                   <i style="background:#ef4444"></i><i style="background:#f59e0b"></i><i style="background:#22c55e"></i>
                   <span style="margin-left:6px;">sp-ventas.com · Portal de coordinación</span>
                 </div>
-                <video class="cover-web-video" src="./assets/videos/clip_coordinacion.webm" poster="./assets/web_bandeja.png" autoplay loop muted playsinline aria-label="Recorrido en video del portal web de coordinación"></video>
+                <video class="cover-web-video" width="1280" height="720" preload="metadata" src="./assets/videos/clip_coordinacion.webm" poster="./assets/web_bandeja.png" autoplay loop muted playsinline aria-label="Recorrido en video del portal web de coordinación"></video>
               </div>
               <div class="cover-phone-front">
                 <img src="./assets/app_inicio.png" alt="App Móvil Flutter" />
@@ -2461,7 +2461,7 @@
             <button type="button" class="tab-btn active" aria-pressed="true" onclick="showWebTab(0, this)"><span class="tab-video-dot" aria-hidden="true"></span>Bandeja</button>
             <button type="button" class="tab-btn" aria-pressed="false" onclick="showWebTab(1, this)">Detalle</button>
             <button type="button" class="tab-btn" aria-pressed="false" onclick="showWebTab(2, this)">Comparador</button>
-            <button type="button" class="tab-btn" aria-pressed="false" onclick="showWebTab(3, this)"><span class="tab-video-dot" aria-hidden="true"></span>Cliente</button>
+            <button type="button" class="tab-btn" aria-pressed="false" onclick="showWebTab(3, this)"><span class="tab-video-dot" aria-hidden="true"></span>Cliente · Maps</button>
             <button type="button" class="tab-btn" aria-pressed="false" onclick="showWebTab(4, this)"><span class="tab-video-dot" aria-hidden="true"></span>Contact Center</button>
             <button type="button" class="tab-btn" aria-pressed="false" onclick="showWebTab(5, this)">Sedes</button>
             <button type="button" class="tab-btn" aria-pressed="false" onclick="showWebTab(6, this)"><span class="tab-video-dot" aria-hidden="true"></span>Empleados</button>
@@ -2482,7 +2482,7 @@
                 </div>
               </div>
               <div class="browser-media">
-                <video id="webVideo" class="browser-video" src="./assets/videos/clip_coordinacion.webm" poster="./assets/web_bandeja.png" autoplay loop muted playsinline controls aria-label="Video de recorrido de Coordinación"></video>
+                <video id="webVideo" class="browser-video" width="1366" height="768" loading="lazy" preload="metadata" src="./assets/videos/clip_coordinacion.webm" poster="./assets/web_bandeja.png" autoplay loop muted playsinline controls aria-label="Video de recorrido del portal web"></video>
                 <button type="button" class="browser-img-wrap" id="webImgWrap" hidden onclick="openLightbox(document.getElementById('webImg').src, document.getElementById('webImg').alt)" aria-label="Ampliar captura del portal web">
                   <img id="webImg" src="./assets/web_bandeja.png" alt="Bandeja de revisión de Coordinación">
                 </button>
@@ -2766,11 +2766,12 @@
   <!-- FULLSCREEN MEDIA ZOOM -->
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Vista ampliada" tabindex="-1" onclick="if(event.target===this) closeLightbox()"><button type="button" class="lightbox-close" onclick="closeLightbox()">Cerrar · Esc</button>
     <img id="lightboxImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Vista ampliada" />
-    <video id="lightboxVideo" controls autoplay loop muted playsinline hidden></video>
+    <video id="lightboxVideo" width="1366" height="768" preload="metadata" controls loop muted playsinline hidden></video>
   </div>
 
   <script>
     const slides = Array.from(document.querySelectorAll('.slide'));
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let current = 0;
 
     function updateSlideUI() {
@@ -2782,7 +2783,7 @@
         if (i === current) s.classList.add('active');
         else if (i < current) s.classList.add('prev');
         s.querySelectorAll('video').forEach(v => {
-          if (i === current && !v.hidden) v.play?.().catch(() => {});
+          if (i === current && !v.hidden && !prefersReducedMotion) v.play?.().catch(() => {});
           else v.pause?.();
         });
       });
@@ -3026,13 +3027,13 @@
     "pts": ["Cruce automático por cédula, plan y dirección", "Resaltado visual de campos coincidentes y distintos", "Consulta en solo lectura antes de aprobar o rechazar"]
   },
   {
-    "url": "sp-ventas.com · Solicitud pública",
-    "tag": "CLIENTE · VIDEO",
-    "title": "Solicitar internet sin sesión",
-    "desc": "Recorrido completo en 4 pasos: datos del cliente, ubicación, carrusel de planes de fibra, autorización y radicado ODV.",
-    "img": "./assets/web_publica_plan.png",
+    "url": "sp-ventas.com/solicitar-internet · Google Maps",
+    "tag": "CLIENTE · GOOGLE MAPS · VIDEO",
+    "title": "Ubicación inteligente con Google Maps",
+    "desc": "Recorrido real en 4 pasos: centrado por municipio y sector DANE, sugerencias de dirección, alternancia Satelital / Calles, ajuste de pin y radicado ODV.",
+    "img": "./assets/web_publica_mapa.png",
     "video": "./assets/videos/clip_solicitud_publica.webm",
-    "pts": ["Formulario público guiado en 4 pasos sin login", "Selección de municipio, sector DANE y plan de fibra", "Generación inmediata de código de radicado ODV"]
+    "pts": ["Centrado territorial DANE y sugerencias verificadas en Pasto", "Alternancia Satelital / Calles y pin con geocodificación inversa", "Decisión entre dirección sugerida o escrita + radicado en 4 pasos"]
   },
   {
     "url": "sp-ventas.com · Contact Center",
@@ -3090,7 +3091,7 @@
         }
         vid.poster = t.img;
         vid.currentTime = 0;
-        if (current === 7) vid.play?.().catch(() => {});
+        if (current === 7 && !prefersReducedMotion) vid.play?.().catch(() => {});
         modeBtn.textContent = 'Ver captura';
         modeBtn.classList.add('is-video');
       } else {
